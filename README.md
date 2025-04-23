@@ -7,25 +7,13 @@ screenGui.Name = "7maestroGUI"
 -- Frame principal (Tela de início)
 local frame = Instance.new("Frame")
 frame.Parent = screenGui
-frame.Size = UDim2.new(0, 500, 0, 500)  -- Ajustando o tamanho do frame para um layout mais adequado para celular
+frame.Size = UDim2.new(0, 500, 0, 500)  -- Ajustando o tamanho do frame para um layout mais adequado
 frame.Position = UDim2.new(0.5, -250, 0.5, -250)
 frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 frame.BorderSizePixel = 0
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
 frame.BackgroundTransparency = 0.2
-
--- Título do script
-local title = Instance.new("TextLabel")
-title.Parent = frame
-title.Size = UDim2.new(1, 0, 0, 50)
-title.BackgroundTransparency = 1
-title.Text = "7maestro - Blox Fruits"
-title.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Cor do título (vermelho)
-title.TextSize = 30
-title.TextAlign = Enum.TextXAlignment.Center
-title.Font = Enum.Font.GothamBold
-title.TextStrokeTransparency = 0.8
-title.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+frame.Visible = false  -- Inicialmente a tela está oculta
 
 -- Função para criar botões
 function createButton(text, position, callback)
@@ -50,57 +38,58 @@ function createButton(text, position, callback)
     return button
 end
 
--- Criando os botões (distribuídos de forma mais compacta)
-createButton("Ativar Auto Farm de Bosses", UDim2.new(0, 20, 0, 70), function()
-    print("Auto Farm de Bosses ativado.")
-    AutoFarmBoss()
+-- Criando os botões para as opções de farm
+createButton("Farm de Mundo 1", UDim2.new(0, 20, 0, 70), function()
+    print("Iniciando farm no Mundo 1.")
+    -- Função para farm no Mundo 1
 end)
 
-createButton("Ativar Auto Haki", UDim2.new(0, 20, 0, 120), function()
-    print("Auto Haki ativado.")
-    AtivarHaki()
+createButton("Farm de Mundo 2", UDim2.new(0, 20, 0, 120), function()
+    print("Iniciando farm no Mundo 2.")
+    -- Função para farm no Mundo 2
 end)
 
-createButton("Ativar Auto Coleta de Itens", UDim2.new(0, 20, 0, 170), function()
-    print("Auto Coleta de Itens ativado.")
-    AutoFarmItens()
+createButton("Farm de Mundo 3", UDim2.new(0, 20, 0, 170), function()
+    print("Iniciando farm no Mundo 3.")
+    -- Função para farm no Mundo 3
 end)
 
-createButton("Ativar Auto Quest", UDim2.new(0, 20, 0, 220), function()
-    print("Auto Quest ativado.")
-    AutoQuest()
+createButton("Farm de Mundo 4", UDim2.new(0, 20, 0, 220), function()
+    print("Iniciando farm no Mundo 4.")
+    -- Função para farm no Mundo 4
 end)
 
-createButton("Escolher Ilha", UDim2.new(0, 20, 0, 270), function()
-    print("Escolher Ilha ativado.")
-    EscolherIlha()
+createButton("Farm de Bosses", UDim2.new(0, 20, 0, 270), function()
+    print("Iniciando farm de bosses.")
+    -- Função para farm de bosses
 end)
 
--- Funções automáticas de exemplo (não implementadas, você pode adaptar)
-function AtivarHaki()
-    -- Função que ativa o Haki
-    print("Haki ativado!")
-end
+-- Criando o ícone com o número 7 (para exibir/ocultar a tela)
+local iconFrame = Instance.new("Frame")
+iconFrame.Parent = screenGui
+iconFrame.Size = UDim2.new(0, 50, 0, 50)
+iconFrame.Position = UDim2.new(0.95, -55, 0.95, -55)
+iconFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+iconFrame.BorderSizePixel = 0
+iconFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 
-function AutoFarmBoss()
-    -- Função para auto farm de bosses
-    print("Auto Farm de Bosses ativado!")
-end
+-- Ícone com o número 7
+local iconLabel = Instance.new("TextLabel")
+iconLabel.Parent = iconFrame
+iconLabel.Size = UDim2.new(1, 0, 1, 0)
+iconLabel.Text = "7"
+iconLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+iconLabel.TextSize = 30
+iconLabel.TextAlign = Enum.TextXAlignment.Center
+iconLabel.TextYAlignment = Enum.TextYAlignment.Center
+iconLabel.BackgroundTransparency = 1
 
-function AutoFarmItens()
-    -- Função para auto coleta de itens
-    print("Auto Coleta de Itens ativado!")
-end
-
-function AutoQuest()
-    -- Função para auto aceitação de quests
-    print("Auto Quest ativado!")
-end
-
-function EscolherIlha()
-    -- Função de teleporte entre ilhas
-    print("Escolher Ilha ativado!")
-end
+-- Lógica para alternar entre mostrar e ocultar a tela de início
+local screenVisible = false
+iconFrame.MouseButton1Click:Connect(function()
+    screenVisible = not screenVisible
+    frame.Visible = screenVisible
+end)
 
 -- Funcionalidade de arrastar a tela
 local dragging = false
