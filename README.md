@@ -1,10 +1,9 @@
--- Criação da GUI do Script
+
 local player = game.Players.LocalPlayer
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = player.PlayerGui
 screenGui.Name = "7maestroGUI"
 
--- Frame principal (Tela de início)
 local frame = Instance.new("Frame")
 frame.Parent = screenGui
 frame.Size = UDim2.new(0, 500, 0, 500)  -- Ajustando o tamanho do frame para um layout mais adequado
@@ -15,7 +14,6 @@ frame.AnchorPoint = Vector2.new(0.5, 0.5)
 frame.BackgroundTransparency = 0.2
 frame.Visible = false  -- Inicialmente a tela está oculta
 
--- Função para criar botões
 function createButton(text, position, callback)
     local button = Instance.new("TextButton")
     button.Parent = frame
@@ -27,7 +25,6 @@ function createButton(text, position, callback)
     button.TextSize = 18
     button.TextButton.MouseButton1Click:Connect(callback)
     
-    -- Efeito de animação no botão (ao passar o mouse)
     button.MouseEnter:Connect(function()
         button.BackgroundColor3 = Color3.fromRGB(255, 170, 0)
     end)
@@ -38,7 +35,6 @@ function createButton(text, position, callback)
     return button
 end
 
--- Criando os botões para as opções de farm
 createButton("Farm de Mundo 1", UDim2.new(0, 20, 0, 70), function()
     print("Iniciando farm no Mundo 1.")
     -- Função para farm no Mundo 1
@@ -64,7 +60,6 @@ createButton("Farm de Bosses", UDim2.new(0, 20, 0, 270), function()
     -- Função para farm de bosses
 end)
 
--- Criando o ícone com o número 7 (para exibir/ocultar a tela)
 local iconFrame = Instance.new("Frame")
 iconFrame.Parent = screenGui
 iconFrame.Size = UDim2.new(0, 50, 0, 50)
